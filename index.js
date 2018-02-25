@@ -16,3 +16,43 @@ const monologueLines = [
   'No.',
   'I am the one who knocks!'
 ];
+
+function callback(acc, current, i, arr){
+  acc += current;
+
+  return acc;
+}
+
+var totalBatteries = batteryBatches.reduce(callback, 0)
+
+function callbackTwo(acc, current, i, arr){
+  // console.log("Current line: ", current)
+
+  let wordCount = current.split(" ").length
+
+  // console.log("Length of current line: ", wordCount)
+  // console.log(Object.keys(acc).includes(wordCount.toString()))
+  // console.log("Acc keys are: ", Object.keys(acc))
+  // console.log("wordCount is: ", wordCount.toString())
+
+
+  if ( Object.keys(acc).includes(wordCount.toString()) ){
+    ++acc[wordCount]
+  } else {
+    acc[wordCount] = 1
+  }
+
+  // console.log("Returned acc: ", acc)
+  // console.log("-----------------------")
+  return acc;
+}
+
+var wordCountMap = monologueLines.reduce(callbackTwo, {})
+
+
+
+
+
+
+
+//
